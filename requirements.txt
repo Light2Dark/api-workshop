@@ -1,0 +1,8 @@
+requests
+numpy
+pandas
+statsmodels
+matplotlib
+fastapi
+uvicorn[standard]
+firebase-admin
