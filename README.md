@@ -1,4 +1,5 @@
 # API Workshop with Amazon Rainforest Data
+Slides: https://docs.google.com/presentation/d/1U1zG_DytcZzBQiK-QUe-yTG42s-wFVugjAoTV5uSQ6M
 
 ## Guidance
 
