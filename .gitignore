@@ -1,6 +1,5 @@
 api-workshop-sunway.json
 .env
-amazon_rainforest
 *.zip
 test.py
 venv

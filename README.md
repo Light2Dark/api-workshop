@@ -1,5 +1,11 @@
-1. Pull some crypto data
-2. Pass the historical values to a predictive model
-3. Predict the future values
+# API Workshop with Amazon Rainforest Data
 
-Data from CoinGecko
+## Guidance
+
+### 1. Setup
+
+Example from CoinGecko
+
+
+### Credits
+https://dev.to/herewecode/a-short-introduction-to-apis-in-6-slides-5712
