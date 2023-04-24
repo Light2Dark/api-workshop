@@ -6,3 +6,4 @@ matplotlib
 fastapi
 uvicorn[standard]
 firebase-admin
+scikit-learn

@@ -1,6 +1,5 @@
 from fastapi import FastAPI, Request
 import pandas as pd
-import pandas as pd
 import json
 from sklearn.linear_model import LinearRegression
 
