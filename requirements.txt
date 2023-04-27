@@ -7,3 +7,4 @@ fastapi
 uvicorn[standard]
 firebase-admin
 scikit-learn
+jinja2

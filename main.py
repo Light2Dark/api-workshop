@@ -1,7 +1,12 @@
 from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
 import pandas as pd
 import json
 from sklearn.linear_model import LinearRegression
+from fastapi.templating import Jinja2Templates
+from utils import get_state_symbol
+
+templates = Jinja2Templates(directory="templates")
 
 df_deforestation = pd.read_csv("amazon_rainforest/def_area_2004_2019.csv")
 df_deforestation.rename(columns={"Ano/Estados": "Year"}, inplace=True)
@@ -54,17 +59,6 @@ async def predict_deforestation(state: str = None):
     return predictions
 
 
-def get_state_symbol(state: str):
-    states = {
-        "Acre": "AC",
-        "Amazonas": "AM",
-        "Amapa": "AP",
-        "Para": "PA",
-        "Maranhao": "MA",
-        "Rondonia": "RO",
-        "Roraima": "RR",
-        "Tocantins": "TO",
-        "Mato Grosso": "MT"
-    }
-    
-    return states.get(state, None)
+@app.get("/visualize", response_class=HTMLResponse)
+async def read_item(request: Request, id: str):
+    return templates.TemplateResponse("amazon.html", {"request": request, "id": id})
