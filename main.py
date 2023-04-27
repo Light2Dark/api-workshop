@@ -60,5 +60,21 @@ async def predict_deforestation(state: str = None):
 
 
 @app.get("/visualize", response_class=HTMLResponse)
-async def read_item(request: Request, id: str):
-    return templates.TemplateResponse("amazon.html", {"request": request, "id": id})
+async def read_item(request: Request, state: str):
+    predictions = get_predictions(state)
+    return templates.TemplateResponse("amazon.html", {"request": request, "state": state, "predictions": predictions})
+
+
+def get_predictions(state: str) -> list:
+    state_symbol = get_state_symbol(state)
+    df = df_deforestation[state_symbol] if state else df_deforestation["AMZ LEGAL"]
+    
+    x, y = df.index, df.values
+    model = LinearRegression()
+    model.fit(x.values.reshape(-1, 1), y)
+
+    predictions = {}
+    for year in range(2020, 2025):
+        predictions[year] = model.predict([[year]])[0]
+    
+    return predictions

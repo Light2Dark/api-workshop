@@ -1,8 +1,79 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Forest</title>
+    <title>{{ state }} Forest</title>
+    <style>
+      body {
+        background-color: #7BB92F;
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+      }
+      h1 {
+        font-size: 5rem;
+        color: #FFFFFF;
+        text-shadow: 2px 2px 2px #000000;
+        margin-top: 5rem;
+      }
+      img {
+        width: 50%;
+        border-radius: 50%;
+        box-shadow: 5px 5px 5px #000000;
+        margin-top: 3rem;
+      }
+      p {
+        font-size: 2rem;
+        color: #FFFFFF;
+        margin-top: 3rem;
+        padding: 0 2rem;
+      }
+      .chart-container {
+        background-color: aliceblue;
+        border-radius: 10px;
+        width: 80%;
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
   </head>
   <body>
-    <h1>Forest ID: {{ id }}</h1>
+    <h1>Welcome to {{ state }} Forest!</h1>
+    <img src="https://images.unsplash.com/photo-1619982870053-1545857b7eb4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" alt="Enchanted Forest">
+    <p>Here, in the heart of {{ state }}, lies a forest of unparalleled beauty and wonder. This enchanted forest is home to a diverse array of flora and fauna, from towering ancient trees to tiny delicate flowers, and from majestic beasts to diminutive insects.</p>
+    <div class="chart-container">
+      <canvas id="deforestation-chart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const ctx = document.getElementById('deforestation-chart').getContext('2d');
+      const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['2020', '2021', '2022', '2023', '2024'],
+          datasets: [{
+            label: 'Deforestation in {{ state }}',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(255, 99, 132, 1)',
+            data: {{ predictions }},
+            fill: false
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }]
+          }
+        }
+      });
+    </script>
   </body>
 </html>
